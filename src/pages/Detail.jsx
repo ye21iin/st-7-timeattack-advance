@@ -1,17 +1,10 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { todoApi } from "../api/todos";
 import { useQuery } from "@tanstack/react-query";
+import { fetchDetail } from "../api/fetchTodos";
 
 export default function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const fetchDetail = async () => {
-    const response = await todoApi(`/todos/${id}`);
-    return response.data;
-  };
 
   const { data, isPending, isError } = useQuery({
     queryKey: ["todos/id"],

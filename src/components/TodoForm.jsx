@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { todoApi } from "../api/todos";
+import { postTodo } from "../api/fetchTodos";
 
 export default function TodoForm() {
+  const queryClient = useQueryClient();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
@@ -14,11 +15,8 @@ export default function TodoForm() {
     createdAt: Date.now(),
   };
 
-  const queryClient = useQueryClient();
-  const postTodo = async () => await todoApi.post("/todos", newTodo);
-
   const { mutate: postTodoMutate } = useMutation({
-    mutationFn: postTodo,
+    mutationFn: () => postTodo(newTodo),
     onSuccess: () => {
       setTitle("");
       setContents("");

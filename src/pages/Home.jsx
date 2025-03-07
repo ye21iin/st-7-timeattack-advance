@@ -1,4 +1,4 @@
-import { todoApi } from "../api/todos";
+import { fetchData } from "../api/fetchTodos";
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 import { useQuery } from "@tanstack/react-query";
@@ -20,8 +20,3 @@ export default function Home() {
     </>
   );
 }
-
-const fetchData = async () => {
-  const response = await todoApi.get("/todos");
-  return response.data;
-};
