@@ -14,7 +14,7 @@ export default function Detail() {
   };
 
   const { data, isPending, isError } = useQuery({
-    queryKey: ["todos"],
+    queryKey: ["todos/id"],
     queryFn: () => fetchDetail(id),
   });
 
